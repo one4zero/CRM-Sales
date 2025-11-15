@@ -16,7 +16,7 @@ if (isAdmin()) {
 }
 
 if (!$task || $task['completed']) {
-    header('Location: ' . getUrl('modules/tasks/index.php');
+    header('Location: ' . getUrl('modules/tasks/index.php'));
     exit();
 }
 
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($stmt) {
-            header('Location: ' . getUrl('modules/tasks/index.php?success=updated');
+            header('Location: ' . getUrl('modules/tasks/index.php?success=updated'));
             exit();
         } else {
             $errors[] = 'Ошибка при обновлении задачи';

@@ -17,11 +17,11 @@ if ($clientId > 0) {
     }
 
     if ($stmt) {
-        header('Location: ' . getUrl('modules/clients/index.php?success=deleted');
+        header('Location: ' . getUrl('modules/clients/index.php?success=deleted'));
     } else {
-        header('Location: ' . getUrl('modules/clients/index.php?error=delete_failed');
+        header('Location: ' . getUrl('modules/clients/index.php?error=delete_failed'));
     }
 } else {
-    header('Location: ' . getUrl('modules/clients/index.php');
+    header('Location: ' . getUrl('modules/clients/index.php'));
 }
 exit();

@@ -15,7 +15,7 @@ if (isAdmin()) {
 }
 
 if (!$deal) {
-    header('Location: ' . getUrl('modules/deals/index.php');
+    header('Location: ' . getUrl('modules/deals/index.php'));
     exit();
 }
 
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($stmt) {
-            header('Location: ' . getUrl('modules/deals/index.php?success=updated');
+            header('Location: ' . getUrl('modules/deals/index.php?success=updated'));
             exit();
         } else {
             $errors[] = 'Ошибка при обновлении сделки';

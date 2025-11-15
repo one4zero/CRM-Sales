@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ], 'sssi');
 
         if ($stmt) {
-            header('Location: ' . getUrl('modules/tasks/index.php?success=added');
+            header('Location: ' . getUrl('modules/tasks/index.php?success=added'));
             exit();
         } else {
             $errors[] = 'Ошибка при добавлении задачи';

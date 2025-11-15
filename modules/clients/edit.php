@@ -15,7 +15,7 @@ if (isAdmin()) {
 }
 
 if (!$client) {
-    header('Location: ' . getUrl('modules/clients/index.php');
+    header('Location: ' . getUrl('modules/clients/index.php'));
     exit();
 }
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ], 'ssssi');
 
         if ($stmt) {
-            header('Location: ' . getUrl('modules/clients/index.php?success=updated');
+            header('Location: ' . getUrl('modules/clients/index.php?success=updated'));
             exit();
         } else {
             $errors[] = 'Ошибка при обновлении данных';

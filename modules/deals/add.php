@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ], 'isdssi');
 
         if ($stmt) {
-            header('Location: ' . getUrl('modules/deals/index.php?success=added');
+            header('Location: ' . getUrl('modules/deals/index.php?success=added'));
             exit();
         } else {
             $errors[] = 'Ошибка при добавлении сделки';

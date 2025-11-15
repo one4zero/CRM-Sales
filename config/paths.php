@@ -12,10 +12,25 @@ $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https'
 $host = $_SERVER['HTTP_HOST'];
 
 // Определение базового пути из URL
-// Вычисляем относительный путь от DOCUMENT_ROOT до корня проекта
-$documentRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
-$projectRoot = str_replace('\\', '/', ROOT_PATH);
-$basePath = str_replace($documentRoot, '', $projectRoot);
+// Находим директорию, где находится config (т.е. на уровень выше)
+$scriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+$documentRoot = str_replace('\\', '/', rtrim($_SERVER['DOCUMENT_ROOT'], '/'));
+$rootPath = str_replace('\\', '/', ROOT_PATH);
+
+// Вычисляем базовый путь относительно document root
+if (strpos($rootPath, $documentRoot) === 0) {
+    $basePath = substr($rootPath, strlen($documentRoot));
+} else {
+    // Если не можем вычислить от document root, используем script name
+    // Удаляем имя файла и все после /modules/ или других директорий
+    $basePath = $scriptPath;
+    if (strpos($basePath, '/modules/') !== false) {
+        $basePath = substr($basePath, 0, strpos($basePath, '/modules/'));
+    } else {
+        $basePath = dirname($basePath);
+    }
+}
+
 $basePath = rtrim($basePath, '/');
 
 define('BASE_URL', $protocol . '://' . $host . $basePath);
