@@ -1,0 +1,99 @@
+<?php
+/**
+ * Конфигурация подключения к базе данных
+ * Скопируйте этот файл в database.php и настройте параметры подключения
+ */
+
+// Параметры подключения к БД
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'crm_sales');
+define('DB_CHARSET', 'utf8mb4');
+
+// Создание подключения
+function getDBConnection() {
+    static $conn = null;
+
+    if ($conn === null) {
+        try {
+            // Создание подключения через mysqli
+            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+            // Проверка подключения
+            if ($conn->connect_error) {
+                die("Ошибка подключения к базе данных: " . $conn->connect_error);
+            }
+
+            // Установка кодировки
+            $conn->set_charset(DB_CHARSET);
+
+        } catch (Exception $e) {
+            die("Ошибка при подключении к БД: " . $e->getMessage());
+        }
+    }
+
+    return $conn;
+}
+
+// Функция безопасного экранирования строк
+function escapeString($string) {
+    $conn = getDBConnection();
+    return $conn->real_escape_string($string);
+}
+
+// Функция для выполнения prepared statements
+function executeQuery($query, $params = [], $types = '') {
+    $conn = getDBConnection();
+    $stmt = $conn->prepare($query);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+
+    $result = $stmt->execute();
+
+    if (!$result) {
+        return false;
+    }
+
+    return $stmt;
+}
+
+// Функция для получения результатов запроса
+function fetchResults($query, $params = [], $types = '') {
+    $stmt = executeQuery($query, $params, $types);
+
+    if (!$stmt) {
+        return [];
+    }
+
+    $result = $stmt->get_result();
+    $data = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    $stmt->close();
+    return $data;
+}
+
+// Функция для получения одной строки
+function fetchRow($query, $params = [], $types = '') {
+    $stmt = executeQuery($query, $params, $types);
+
+    if (!$stmt) {
+        return null;
+    }
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row;
+}
