@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card login-card">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
-                            <i class="fas fa-chart-line login-icon"></i>
                             <h2 class="mt-3 mb-2">CRM-система</h2>
                             <p class="text-muted">Управление продажами</p>
                         </div>
