@@ -12,9 +12,14 @@ $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https'
 $host = $_SERVER['HTTP_HOST'];
 
 // Определение базового пути из URL
-$scriptName = dirname($_SERVER['SCRIPT_NAME']);
-define('BASE_URL', $protocol . '://' . $host . $scriptName);
-define('BASE_PATH', rtrim($scriptName, '/'));
+// Вычисляем относительный путь от DOCUMENT_ROOT до корня проекта
+$documentRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+$projectRoot = str_replace('\\', '/', ROOT_PATH);
+$basePath = str_replace($documentRoot, '', $projectRoot);
+$basePath = rtrim($basePath, '/');
+
+define('BASE_URL', $protocol . '://' . $host . $basePath);
+define('BASE_PATH', $basePath);
 
 // Пути к директориям
 define('CONFIG_PATH', ROOT_PATH . '/config');
