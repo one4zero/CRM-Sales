@@ -16,11 +16,11 @@ if ($taskId > 0) {
     }
 
     if ($stmt) {
-        header('Location: index.php?success=deleted');
+        header('Location: ' . getUrl('modules/tasks/index.php?success=deleted');
     } else {
-        header('Location: index.php?error=delete_failed');
+        header('Location: ' . getUrl('modules/tasks/index.php?error=delete_failed');
     }
 } else {
-    header('Location: index.php');
+    header('Location: ' . getUrl('modules/tasks/index.php');
 }
 exit();

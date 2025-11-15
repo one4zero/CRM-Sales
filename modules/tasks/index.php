@@ -102,7 +102,7 @@ if (isAdmin()) {
                         </div>
                         <?php if ($completedFilter >= 0): ?>
                             <div class="col-md-2 d-flex align-items-end">
-                                <a href="index.php" class="btn btn-secondary">
+                                <a href="<?php echo getUrl('modules/tasks/index.php'); ?>" class="btn btn-secondary">
                                     <i class="fas fa-times"></i> Сбросить
                                 </a>
                             </div>

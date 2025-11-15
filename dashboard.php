@@ -233,7 +233,7 @@ if (isAdmin()) {
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="/modules/deals/index.php" class="btn btn-sm btn-primary mt-2">
+                            <a href="<?php echo getUrl('modules/deals/index.php'); ?>" class="btn btn-sm btn-primary mt-2">
                                 <i class="fas fa-arrow-right"></i> Все сделки
                             </a>
                         <?php endif; ?>
@@ -267,7 +267,7 @@ if (isAdmin()) {
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            <a href="/modules/tasks/index.php" class="btn btn-sm btn-primary mt-2">
+                            <a href="<?php echo getUrl('modules/tasks/index.php'); ?>" class="btn btn-sm btn-primary mt-2">
                                 <i class="fas fa-arrow-right"></i> Все задачи
                             </a>
                         <?php endif; ?>

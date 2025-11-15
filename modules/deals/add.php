@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ], 'isdssi');
 
         if ($stmt) {
-            header('Location: index.php?success=added');
+            header('Location: ' . getUrl('modules/deals/index.php?success=added');
             exit();
         } else {
             $errors[] = 'Ошибка при добавлении сделки';
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> Сохранить
                         </button>
-                        <a href="index.php" class="btn btn-secondary">
+                        <a href="<?php echo getUrl('modules/deals/index.php'); ?>" class="btn btn-secondary">
                             <i class="fas fa-times"></i> Отмена
                         </a>
                     </div>

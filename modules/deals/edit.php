@@ -14,7 +14,7 @@ if (isAdmin()) {
 }
 
 if (!$deal) {
-    header('Location: index.php');
+    header('Location: ' . getUrl('modules/deals/index.php');
     exit();
 }
 
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($stmt) {
-            header('Location: index.php?success=updated');
+            header('Location: ' . getUrl('modules/deals/index.php?success=updated');
             exit();
         } else {
             $errors[] = 'Ошибка при обновлении сделки';
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> Сохранить изменения
                         </button>
-                        <a href="index.php" class="btn btn-secondary">
+                        <a href="<?php echo getUrl('modules/deals/index.php'); ?>" class="btn btn-secondary">
                             <i class="fas fa-times"></i> Отмена
                         </a>
                     </div>

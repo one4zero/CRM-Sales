@@ -8,6 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once __DIR__ . '/../config/paths.php';
 require_once __DIR__ . '/../config/database.php';
 
 /**
@@ -15,7 +16,7 @@ require_once __DIR__ . '/../config/database.php';
  */
 function checkAuth() {
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
-        header('Location: /login.php');
+        header('Location: ' . getUrl('login.php'));
         exit();
     }
 }
@@ -26,7 +27,7 @@ function checkAuth() {
 function checkAdmin() {
     checkAuth();
     if ($_SESSION['user_role'] !== 'admin') {
-        header('Location: /dashboard.php');
+        header('Location: ' . getUrl('dashboard.php'));
         exit();
     }
 }
@@ -86,7 +87,7 @@ function authenticate($username, $password) {
 function logout() {
     session_unset();
     session_destroy();
-    header('Location: /login.php');
+    header('Location: ' . getUrl('login.php'));
     exit();
 }
 

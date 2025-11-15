@@ -107,7 +107,7 @@ if (isAdmin()) {
                         </div>
                         <?php if (!empty($search)): ?>
                             <div class="col-md-2">
-                                <a href="index.php" class="btn btn-secondary">
+                                <a href="<?php echo getUrl('modules/clients/index.php'); ?>" class="btn btn-secondary">
                                     <i class="fas fa-times"></i> Сбросить
                                 </a>
                             </div>

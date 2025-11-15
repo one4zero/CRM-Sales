@@ -1,11 +1,12 @@
 <?php
 session_start();
+require_once 'config/paths.php';
 require_once 'config/database.php';
 require_once 'includes/auth.php';
 
 // Если пользователь уже авторизован, перенаправляем на dashboard
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+    header('Location: ' . getUrl('dashboard.php'));
     exit();
 }
 
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Заполните все поля';
     } else {
         if (authenticate($username, $password)) {
-            header('Location: dashboard.php');
+            header('Location: ' . getUrl('dashboard.php'));
             exit();
         } else {
             $error = 'Неверный логин или пароль';
@@ -36,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Вход в систему - CRM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo CSS_URL; ?>/style.css">
 </head>
 <body class="login-page">
     <div class="container">
