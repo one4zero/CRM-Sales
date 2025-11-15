@@ -66,7 +66,70 @@ CRM-система представляет собой полнофункцио�
 - Apache/Nginx веб-сервер
 - Поддержка модуля mod_rewrite (для Apache)
 
-### Пошаговая инструкция
+### Быстрая установка для Ampps (Windows)
+
+**Рекомендуется для студентов и быстрого запуска проекта**
+
+#### 1. Размещение файлов
+
+Скопируйте содержимое проекта в директорию Ampps:
+```
+D:\prog\Ampps\www\CRM-Sale\
+```
+
+#### 2. Настройка базы данных
+
+**Вариант A - Через phpMyAdmin (рекомендуется):**
+
+1. Откройте phpMyAdmin: `http://localhost/phpmyadmin`
+2. Нажмите "Новая" в левом меню
+3. Введите имя базы данных: `crm_sales`
+4. Кодировка: `utf8mb4_unicode_ci`
+5. Нажмите "Создать"
+6. Перейдите во вкладку "SQL"
+7. Скопируйте весь текст из файла `database/schema.sql` и выполните
+8. Затем скопируйте текст из `database/test_data.sql` и выполните
+
+**Вариант B - Через командную строку:**
+
+```cmd
+cd D:\prog\Ampps\mysql\bin
+mysql.exe -u root -pmysql < D:\prog\Ampps\www\CRM-Sale\database\schema.sql
+mysql.exe -u root -pmysql < D:\prog\Ampps\www\CRM-Sale\database\test_data.sql
+```
+
+#### 3. Настройка конфигурации
+
+Скопируйте файл примера и настройте подключение:
+
+1. Скопируйте `config/database.php.example` в `config/database.php`
+2. Откройте `config/database.php` в текстовом редакторе
+3. Убедитесь, что параметры такие:
+
+```php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'mysql');        // Пароль по умолчанию в Ampps
+define('DB_NAME', 'crm_sales');
+```
+
+#### 4. Запуск
+
+1. Убедитесь, что Apache и MySQL запущены в Ampps
+2. Откройте браузер
+3. Перейдите по адресу: `http://localhost/CRM-Sale`
+
+#### 5. Вход в систему
+
+Используйте тестовый аккаунт администратора:
+- **Логин:** admin
+- **Пароль:** password123
+
+**Готово!** Система установлена и готова к работе.
+
+---
+
+### Пошаговая инструкция (Linux/macOS)
 
 #### 1. Клонирование репозитория
 
