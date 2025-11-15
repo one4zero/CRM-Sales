@@ -1,4 +1,5 @@
 <?php
+require_once '../../config/paths.php';
 $pageTitle = 'Добавить задачу';
 require_once '../../includes/header.php';
 require_once '../../config/database.php';
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php echo isAdmin() ? 'Администратор' : 'Менеджер'; ?>
                 </span>
             </div>
-            <a href="/logout.php" class="btn btn-logout">
+            <a href="<?php echo getUrl('logout.php'); ?>" class="btn btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Выход
             </a>
         </div>

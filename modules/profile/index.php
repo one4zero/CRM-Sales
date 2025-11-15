@@ -1,4 +1,5 @@
 <?php
+require_once '../../config/paths.php';
 $pageTitle = 'Личный кабинет';
 require_once '../../includes/header.php';
 require_once '../../config/database.php';
